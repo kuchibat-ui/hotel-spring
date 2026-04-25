@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap hotelSpring</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-5">Список бронирований</h1>
+    <div>
+        <a href="/add-booking" class="btn btn-primary me-3">Добавить бронирование</a>
+        <a href="/rooms" class="btn btn-primary me-3">Комнаты</a>
+        <a href="/clients" class="btn btn-primary me-3">Клиенты</a>
+    </div>
+    <table class="table">                                     <!-- таблица из колонок:-->
+        <thead>
+        <tr class="table-info">
+            <th scope="col">ID</th>                    <!-- номер  комнаты-->
+            <th scope="col">Клиент</th>                   <!-- и т д-->
+            <th scope="col">Комната</th>
+            <th scope="col">Дата заезда</th>                         <!-- th -это столбец или колонка-->
+            <th scope="col">Дата выезда</th>
+            <th scope="col">Количество гостей</th>                         <!-- th -это столбец или колонка-->
+            <th scope="col">Общая стоимость</th>
+            <th scope="col">Статус</th>                         <!-- th -это столбец или колонка-->
+            <th scope="col">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking: ${bookingList}">                          <!-- $-это обращение к данным из модель clientList-->
+            <!--цикл по каждой комнате по списку roomList-->
+            <th th:text="${booking.id}"></th>
+            <th th:text="${booking.client.surname}"></th>
+            <th th:text="${booking.room.roomNumber}"></th>
+            <th th:text="${booking.checkInDate}"></th>
+            <th th:text="${booking.checkOutDate}"></th>
+            <th th:text="${booking.guestsCount}"></th>
+            <th th:text="${booking.totalPrice}"></th>
+            <th th:text="${booking.status}"></th>
+               <td>
+                <a th:href="@{/delete-booking/{id}(id=${booking.getId()})}" class="btn btn-danger btn-sm">Удалить</a>     <!-- ссылка на путь который ведет к delete-странице , передается ему id, где указывается где взять его-->
+                <a th:href="@{/edit-booking/{id}(id=${booking.getId()})}" class="btn btn-primary btn-sm">Редактировать</a>                                                             <!-- то же самое только к edit-странице-->
+            </td>                                                              <!-- $--(знак доллара) - обращение к элементам объекта-->
+        </tr>
+        </tbody>
+    </table>
+    <a href="/"><div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-primary" type="button">Назад</button>
+
+    </div></a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
