@@ -20,7 +20,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="client: ${clientList}">                          <!-- цикл по каждой комнате по списку roomList-->
+        <tr th:each="client: ${clientList}">                          <!-- $-это обращение к данным из модель clientList-->
+                                                                       <!--цикл по каждой комнате по списку roomList-->
             <th scope="row" th:text="${client.surname}"></th>       <!-- здесь отображаем номер комнаты-->
             <td th:text="${client.firstname}"></td>                         <!--отображаем тип-->
             <td th:text="${client.phone}"></td>                       <!-- отображаем статус-->
@@ -28,8 +29,8 @@
             <td th:text="${client.email}"></td> <!-- и цену-->
             <td>                                                                <!-- td- - это ячейка в таблице-->
                                                                                 <!-- th -- это если надо из объекта что то вытащи-->
-                <a th:href="@{/delete-client/{id}(id=${client.getId()})}">Удалить</a>     <!-- ссылка на путь который ведет к delete-странице , передается ему id, где указывается где взять его-->
-                                                                                      <!-- то же самое только к edit-странице-->
+                <a class="btn btn-danger btn-sm" th:href="@{/delete-client/{id}(id=${client.getId()})}">Удалить</a>     <!-- ссылка на путь который ведет к delete-странице , передается ему id, где указывается где взять его-->
+                <a class="btn btn-primary btn-sm" th:href="@{/edit-client/{id}(id=${client.getId()})}" >Редактировать</a>                                                             <!-- то же самое только к edit-странице-->
             </td>                                                              <!-- $--(знак доллара) - обращение к элементам объекта-->
         </tr>
         </tbody>
@@ -37,7 +38,7 @@
 
 
     <a href="/"><div class="d-grid gap-2 d-md-block">
-        <button class="btn btn-primary" type="button">Назад</button>
+        <button class="btn btn-primary" type="button">На главную</button>
 
     </div></a>
 

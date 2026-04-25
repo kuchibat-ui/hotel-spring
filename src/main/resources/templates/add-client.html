@@ -9,11 +9,16 @@
 <body>
 <div class="container">
     <h1 class="text-center my-5">Добавить клиента</h1>
-    <form th:action="@{/addClient}" th:object="${client}"  method="post">
+    <form th:action="@{/add-client}"
+          th:object="${client}"  method="post">   <!-- юзер заполняет поля и отправляет POST на add-client/-->
+                                                  <!-- @-это URL путь; *- это поле внутри объекта; $- переменная из модели-->
+
         <div class="mb-3">
             <label for="surname">Фамилия</label>
-            <input type="text" class="form-control" th:field="*{surname}" placeholder="фамилия" id="surname">
+            <input type="text" class="form-control"
+                   th:field="*{surname}" placeholder="фамилия" id="surname">   <!--*{} оззначает взять поле из объекта указанного th:object-->
         </div>
+
 
         <div class="mb-3">
             <label>Имя</label>
