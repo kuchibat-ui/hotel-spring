@@ -52,29 +52,32 @@
                 <th scope="row" th:text="${room.id}"></th>
                 <td th:text="${room.roomNumber}"></td>
                 <td th:text="${room.type}"></td>
-                <td  th:text="${room.pricePerNight}"></td>
+                <td th:text="${room.pricePerNight}"></td>
                 <td th:text="${room.status}"></td>
-
             </tr>
-
             </tbody>
         </table>
-
-
-    </tr>                                                               <!-- td- - это ячейка в таблице-->
-
+    </tr>
 </table>
-<tr th:if="${findedClients == null }">
+
+
+<tr th:if="${findedNumbers == null }">
     <td colspan="3">комнаты с номером "<strong th:text="${number}"></strong>" не найдена</td>
 </tr>
+
+
 <div th:unless="${surname}">
     <p> Введите номер комнаты для поиска</p>
 </div>
-</tbody>
-<a href="/"><div class="d-grid gap-2 d-md-block">
-    <button class="btn btn-primary" type="button">На главную</button>
 
-</div></a>
+
+</tbody>
+
+<a href="/">
+    <div class="d-grid gap-2 d-md-block">
+        <button class="btn btn-primary" type="button">На главную</button>
+    </div>
+</a>
 
 </body>
 </html>

@@ -8,15 +8,22 @@
 </head>
 <body>
 <div class="container">
+
     <h1 class="text-center my-5">Добавить бронирование</h1>
     <form th:action="@{/add-booking}"
-          th:object="${booking}"  method="post">   <!-- юзер заполняет поля и отправляет POST на add-client/-->
-        <!-- @-это URL путь; *- это поле внутри объекта; $- переменная из модели-->
+          th:object="${booking}"  method="post">
+        <!-- th:action означает на какой url отправить форму при нажатии Submit-->
+        <!-- юзер заполняет поля и отправляет POST на add-booking/-->
+
+        <!-- @-это URL путь; *- это поле внутри объекта; $- переменная из модели,это то что сюда прилетает из контроллера-->
+
 <label for="clientId">Выберите клиента</label>
         <div class="mb-3">
             <select name="clientId" id="clientId">
                 <option value="">Выберите клиента</option>
                 <option  th:each="client : ${clients}" th:value="${client.id}" th:text="${client.surname}"></option>
+               <!-- th:value- задает значение для атрибута value, при заполнение формы на сервер уйдет это число
+               th:text -задает внутренний текст (то что видит пользователь)-->
             </select>
         </div>
         <div class="mb-3">
@@ -30,6 +37,9 @@
         <div class="mb-3">
             <label>Дата заезда</label>
             <input type="date" class="form-control" th:field="*{checkInDate}">
+<!--                                                                    field-- связывает поле ввода с переменной из объекта (бэкенда-контроллера)
+                                                                        используется только внутри form с объектом-->
+
         </div>
 
         <div class="mb-3">
@@ -46,6 +56,12 @@
         </div>
     </form>
 </div>
+<!--    <div th:if="${param.error}" class="error-message">-->
+<!--        номер забронирован на выбранные даты-->
+<!--    </div>-->
+<!--     <div th: if="${param.success}" class="success-message">-->
+<!--         бронирование успешно создано-->
+<!--     </div>-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

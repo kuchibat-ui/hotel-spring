@@ -40,22 +40,22 @@
         <table table class="table table-success table-striped-columns">
             <thead>
             <tr>
-                <th scope="col">номер по порядку</th>
                 <th scope="col">ID</th>
                 <th scope="col">Фамилия</th>
                 <th scope="col">Имя</th>
                 <th scope="col">Телефон</th>
                 <th scope="col">Паспорт</th>
+
             </tr>
             </thead>
             <tbody class="table-group-divider">
             <tr>
-                <th scope="row">1</th>
-                <td th:text="${client.id}"></td>                         <!--отображаем тип-->
-                <td th:text="${client.surname}"></td>
-                <td th:text="${client.firstname}"></td>                                        <!-- отображаем статус-->
-                <td th:text="${client.phone}"></td>
+                <td th:text="${client.id}"></td>
+                <td th:text="${client.surname}"></td>                         <!--отображаем тип-->
+                <td th:text="${client.firstname}"></td>
+                <td th:text="${client.phone}"></td>                                        <!-- отображаем статус-->
                 <td th:text="${client.passport}"></td>
+
             </tr>
 
             </tbody>

@@ -48,6 +48,10 @@ public class BookingController {
         booking.setRoom(room);
         booking.setBookingDate(LocalDate.now());
         booking.calculateTotalPrice();
+
+       if(bookingRepository.isRoomOccupied(booking.getRoom().getId(),booking.getCheckInDate(),booking.getCheckOutDate())){
+           return "/booking-error";}
+
         room.setStatus("Забронировано");
         roomRepository.save(room);
         bookingRepository.save(booking);

@@ -21,6 +21,7 @@ public class RoomController {
     public String mainPage(){
         return "index";
     }
+
     @GetMapping("/add-room")
     public String showAddRoom(Model model){
         model.addAttribute("room", new Room());

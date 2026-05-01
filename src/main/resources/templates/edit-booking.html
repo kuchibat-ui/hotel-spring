@@ -10,13 +10,17 @@
 <div class="container">
     <h1 class="text-center my-5">Редактировать бронирование</h1>
     <form th:action="@{/edit-booking/{id}(id=${booking.id})}"
-          th:object="${booking}"  method="post">   <!-- юзер заполняет поля и отправляет POST на add-client/-->
+          th:object="${booking}"  method="post">
+        <!-- th:action -после заполнения всех полей в form данные отправляются на контроллер методом POST адрес edit-booking/id  где id берется из booking.id/-->
+        <!-- юзер заполняет поля и отправляет POST на add-client/-->
                                                    <!-- @-это URL путь; *- это поле внутри объекта; $- переменная из модели-->
 
         <div class="mb-3">
             <select name="clientId" id="clientId">                                <!--select выпадающй список-->
                 <option value="">Выберите клиента</option>
-                <option  th:each="client : ${clients}" th:value="${client.id}" th:text="${client.surname}"
+                <option  th:each="client : ${clients}"
+                         th:value="${client.id}"
+                         th:text="${client.surname}"
                          th:selected="${client.id == booking.client.id}">       <!--selected выберется тот кто true что б показывал выбранного клиента-->
                 </option>
             </select>

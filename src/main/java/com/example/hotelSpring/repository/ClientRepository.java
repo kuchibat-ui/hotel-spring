@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Client,Long> {
 List<Client>findBySurname(String surname);
-    List<Client> findBySurnameContainingIgnoreCase(String surname);
+
 }
