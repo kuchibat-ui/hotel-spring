@@ -3,7 +3,6 @@ package com.example.hotelSpring.controller;
 import com.example.hotelSpring.entity.Client;
 import com.example.hotelSpring.entity.User;
 import com.example.hotelSpring.repository.AuthRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Controller
 public class AuthController {
     private AuthRepository authRepository;
-private final PasswordEncoder passwordEncoder;
 
-    public AuthController(AuthRepository authRepository, PasswordEncoder passwordEncoder) {
+    public AuthController(AuthRepository authRepository) {
         this.authRepository = authRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -36,6 +34,7 @@ private final PasswordEncoder passwordEncoder;
         if (user.isPresent()) {
             return "redirect:/dashboard";
         } else {
+            System.out.println("-----------");
             model.addAttribute("error", "неверные учетные данные");
             return "/login";
         }
@@ -54,7 +53,7 @@ private final PasswordEncoder passwordEncoder;
                            @RequestParam String email)
     {
         user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(password);
         user.setEmail(email);
         authRepository.save(user);
         return "redirect:/login";
