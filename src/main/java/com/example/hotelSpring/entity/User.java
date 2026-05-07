@@ -3,12 +3,13 @@ package com.example.hotelSpring.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "user_name")
     private String username;
 
     @Column(name = "password")
@@ -25,7 +26,7 @@ public class User {
         return id;
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
@@ -43,5 +44,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User() {
+    }
+
+    public User(String username,String password,String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 }
